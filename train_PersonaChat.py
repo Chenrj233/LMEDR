@@ -45,7 +45,7 @@ def init_config():
                         help="Device (cuda or cpu)")
     parser.add_argument("--local_rank", type=int, default=-1,
                         help="Local rank for distributed training (-1: not distributed)")
-    parser.add_argument("--output_dir", type=str, default="persona_",
+    parser.add_argument("--output_dir", type=str, default="persona",
                         help="save model")
     parser.add_argument("--load_from", type=str, default=None,
                         help="save model")
@@ -93,8 +93,8 @@ if __name__ == '__main__':
 
     if not args.eval:
         if not os.path.exists(os.path.join(args.output_dir + data_from)):
-            os.makedirs(os.path.join(args.output_dir + args.data_from))
-        log_file = os.path.join(args.output_dir + args.data_from, "train.log")
+            os.makedirs(os.path.join(args.output_dir + data_from))
+        log_file = os.path.join(args.output_dir + data_from, "train.log")
     else:
         log_file = os.path.join(args.load_from, "eval.log")
 
@@ -372,7 +372,7 @@ if __name__ == '__main__':
                 'mymodel': getattr(model, 'module', model)})  # "getattr" takes care of distributed encapsulation
 
             torch.save(args, log_dir + '/model_training_args.bin')
-            getattr(model, 'module', model).config.to_json_file(os.path.join(args.root_dir, log_dir, CONFIG_NAME))
+            getattr(model, 'module', model).config.to_json_file(os.path.join(log_dir, CONFIG_NAME))
             tokenizer.save_pretrained(log_dir)
 
         logger.info("Begin training")
@@ -381,8 +381,8 @@ if __name__ == '__main__':
 
         # On the main process: close tensorboard logger and rename the last checkpoint (for easy re-loading with OpenAIGPTModel.from_pretrained method)
         if args.local_rank in [-1, 0] and args.epochs > 0:
-            os.rename(os.path.join(args.root_dir, log_dir, checkpoint_handler._saved[-1][1]),
-                      os.path.join(args.root_dir, log_dir,
+            os.rename(os.path.join(log_dir, checkpoint_handler._saved[-1][1]),
+                      os.path.join(log_dir,
                                    WEIGHTS_NAME))  # TODO: PR in ignite to have better access to saved file paths (cleaner)
             tb_logger.close()
 

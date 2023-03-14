@@ -137,7 +137,7 @@ if __name__ == '__main__':
     persona, query, response = create_data(f"data/DSTC/valid_set4DSTC7-AVSD.json")
     val_data = build_dataloader(persona, query, response, tokenizer, max_query=args.max_query)
     logger.info("Build infer data")
-    infer_data = build_nli_dataset(tokenizer, "data/ConvAI2/multinli_1.0_train.jsonl")
+    infer_data = build_nli_dataset(tokenizer, "data/mnli/multinli_1.0_train.jsonl")
     logger.info("Build test data")
 
     MODEL_INPUTS = ["input_ids", "attention_mask", "lmlabels", "decoder_input_ids", "decoder_attention_mask",
@@ -361,8 +361,8 @@ if __name__ == '__main__':
 
     # On the main process: close tensorboard logger and rename the last checkpoint (for easy re-loading with OpenAIGPTModel.from_pretrained method)
     if args.local_rank in [-1, 0] and args.epochs > 0:
-        os.rename(os.path.join(args.root_dir, log_dir, checkpoint_handler._saved[-1][1]),
-                  os.path.join(args.root_dir, log_dir,
+        os.rename(os.path.join(log_dir, checkpoint_handler._saved[-1][1]),
+                  os.path.join(log_dir,
                                WEIGHTS_NAME))  # TODO: PR in ignite to have better access to saved file paths (cleaner)
         tb_logger.close()
 

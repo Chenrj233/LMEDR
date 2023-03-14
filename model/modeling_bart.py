@@ -1476,7 +1476,7 @@ class BartForCausalLM(BartPretrainedModel):
         return reordered_past
 
 
-from memory_loss import MemoryLoss
+from model.memory_loss import MemoryLoss
 
 
 class LMEDRModel(BartPretrainedModel):
