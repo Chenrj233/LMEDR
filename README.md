@@ -45,9 +45,9 @@ Please replace `eval_f1.py` and `eval_hits.py` in `/ParlAI/projects/convai2/` wi
 ```
 python train_PersonaChat.py --lr 8e-6 \
 --epochs 20 \
---train_batch_size 4 \
+--train_batch_size 2 \
 --valid_batch_size 2 \
---infer_batch_size 128 
+--infer_batch_size 64 
 ```
 
 * **DSTC7-AVSD**

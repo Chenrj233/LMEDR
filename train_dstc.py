@@ -347,7 +347,7 @@ if __name__ == '__main__':
                          event_name=Events.EPOCH_COMPLETED)
 
         checkpoint_handler = ModelCheckpoint(log_dir, 'checkpoint', n_saved=None)
-        trainer.add_event_handler(Events.EPOCH_COMPLETED, checkpoint_handler, {
+        infer_trainer.add_event_handler(Events.EPOCH_COMPLETED, checkpoint_handler, {
             'mymodel': getattr(model, 'module', model)})  # "getattr" takes care of distributed encapsulation
 
 
