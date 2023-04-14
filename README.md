@@ -69,12 +69,12 @@ python train_dstc.py --lr 8e-6 \
 
 - Hits@1
 ```
-python evaluation_PersonaChat.py --load_from persona_original \
+python evaluation_PersonaChat.py --model_checkpoint persona_original \
 --eval_type hits@1
 ```
 - F1
 ```
-python evaluation_PersonaChat.py --load_from persona_original \
+python evaluation_PersonaChat.py --model_checkpoint persona_original \
 --eval_type f1 \
 --beam 2 \
 --max_history 7
