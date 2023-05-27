@@ -29,6 +29,8 @@ Please replace `eval_f1.py` and `eval_hits.py` in `/ParlAI/projects/convai2/` wi
 
 ## Data
 
+The datasets used in the paper can be obtained from the following link:
+
 |  Dataset| Paper  |
 |  ----   |  ----  |
 |  [ConvAI2 PersonaChat](http://parl.ai/downloads/convai2/convai2_fix_723.tgz) | [The Second Conversational Intelligence Challenge (ConvAI2)](https://link.springer.com/chapter/10.1007/978-3-030-29135-8_7)  |
